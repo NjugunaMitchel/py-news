@@ -1,22 +1,28 @@
 {% macro displayNewsList(sources_list)%}
 
-    {% for article in  sources_list %}
-   
-    {%for article_item in article%}
-    <div class=" col-md-2 news-card">
-      <h2>{{article_item.title}}</h2>
-      <li class="text-center">
-          <a href="/news/{{article_item.id}}">
-              {{ article_item.author|truncate(10)}}</a>
-      </li>
-      <img src="{{article_item.url}}">
-      <p>{{article_item.description}}</p>
-  </div>
+{% for article in  sources_list %}
 
-    {% endfor %}
-    {% endfor %}
+<div class="news-card" style="box-shadow: 2px 2px 2px 2px grey;margin-top:5px;">
+    <span style="display:flex; justify-content: space-between;">
+        <h2 style="text-align: center;">Title:{{article.name}}</h2>
+        <span style="border-radius: 20px;padding:4px;margin:3px;
+            background-color: black; color:blanchedalmond; height:30px">{{article.date}}</span>
+    </span>
+    <div style=" display: flex;">
+        <a href="{{article.url}}"><img src="{{article.image}}" width="350px" height="250px" style="margin: 5px;"></a>
 
-  
+        <p style="font-size: larger; justify-content: middle; text-align: center; padding:50px">
+            <span
+                style="display:block;font-size:larger;font-style: italic; border-radius:30px;">{{article.source.name}}</span>{{article.description |truncate(300)}}
+            <span style="display:block; border:1px solid black; border-radius: 20px;padding:4px;
+                background-color: rgba(0, 0, 0, 0.849); color:blanchedalmond;width:100px;"><a
+                    href="{{article.url}}">See more</a></span></p>
+    </div>
+
+</div>
+
+{% endfor %}
+
+
 
 {% endmacro %}
-
